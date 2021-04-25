@@ -52,7 +52,7 @@
   (restrict-max-arity args-manipulator #f))
 
 
-(define (curry-argument i x)
+(define ((curry-argument i) x)
   (define (args-manipulator . args)
     (apply values (list-insert args i x)))
   args-manipulator)
@@ -72,10 +72,10 @@
 'expect 4
 
 ((compose
-   (curry-argument 0 10)
+   ((curry-argument 0) 10)
    (lambda (x y) (+ x y)))
  1)
-'expect 1
+'expect 11
 
 ((compose
    (permute-arguments 1 0)
